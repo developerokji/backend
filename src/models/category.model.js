@@ -23,19 +23,19 @@ class CategoryModel {
   }
 
   async createCategory(data) {
-    const { name, image_name, image_path, status } = data;
+    const { name, imageName, imagePath, status } = data;
     const [result] = await db.query(
       `INSERT INTO category (name, image_name, image_path, status) VALUES (?, ?, ?, ?)`,
-      [name, image_name, image_path, status]
+      [name, imageName, imagePath, status]
     );
     return result;
   }
 
   async updateCategory(id, data) {
-    const { name, image_name, image_path, status } = data;
+    const { name, imageName, imagePath, status } = data;
     const [result] = await db.query(
       `UPDATE category SET name = ?, image_name = ?, image_path = ?, status = ?, updated_at = NOW() WHERE id = ?`,
-      [name, image_name, image_path, status, id]
+      [name, imageName, imagePath, status, id]
     );
     return result;
   }

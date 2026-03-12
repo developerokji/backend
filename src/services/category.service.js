@@ -13,7 +13,12 @@ class CategoryService {
   }
 
   async createCategory(fields) {
-    return categoryModel.createCategory(fields);
+    return categoryModel.createCategory({
+      name:       fields.name,
+      imageName: fields.imageName,
+      imagePath: fields.imagePath,
+      status:     fields.status,
+    });
   }
 
   async updateCategory(id, fields) {
@@ -22,8 +27,8 @@ class CategoryService {
 
     const merged = {
       name:       fields.name       ?? existing.name,
-      image_name: fields.imageName  ?? existing.image_name,
-      image_path: fields.imagePath  ?? existing.image_path,
+      imageName: fields.imageName  ?? existing.image_name,
+      imagePath: fields.imagePath  ?? existing.image_path,
       status:     fields.status     ?? existing.status,
     };
 

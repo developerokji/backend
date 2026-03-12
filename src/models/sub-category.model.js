@@ -35,19 +35,19 @@ class SubCategoryModel {
   }
 
   async createSubCategory(data) {
-    const { name, image_name, image_path, status, category_id } = data;
+    const { name, imageName, imagePath, status, categoryId } = data;
     const [result] = await db.query(
       `INSERT INTO sub_category (name, image_name, image_path, status, category_id) VALUES (?, ?, ?, ?, ?)`,
-      [name, image_name, image_path, status, category_id]
+      [name, imageName, imagePath, status, categoryId]
     );
     return result;
   }
 
   async updateSubCategory(id, data) {
-    const { name, image_name, image_path, status, category_id } = data;
+    const { name, imageName, imagePath, status, categoryId } = data;
     const [result] = await db.query(
       `UPDATE sub_category SET name = ?, image_name = ?, image_path = ?, status = ?, category_id = ?, updated_at = NOW() WHERE id = ?`,
-      [name, image_name, image_path, status, category_id, id]
+      [name, imageName, imagePath, status, categoryId, id]
     );
     return result;
   }

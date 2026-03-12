@@ -37,13 +37,13 @@ class BannerController {
       const bannerImgPath = await storageService.processUpload(req.file, 'banners');
 
       const banner = await bannerService.createBanner({
-        banner_title:    bannerTitle,
-        banner_desc:     bannerDesc,
-        banner_img:      req.file.filename,
-        banner_img_path: bannerImgPath,
-        category_id:     categoryId || null,
-        sub_category_id: subCategoryId || null,
-        service_id:      serviceId || null,
+        bannerTitle,
+        bannerDesc,
+        bannerImg:      req.file.filename,
+        bannerImgPath,
+        categoryId:     categoryId || null,
+        subCategoryId:  subCategoryId || null,
+        serviceId:      serviceId || null,
         status,
         show,
       });

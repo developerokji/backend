@@ -29,8 +29,8 @@ class CategoryController {
 
       const category = await categoryService.createCategory({
         name,
-        image_name: req.file.filename,
-        image_path: imagePath,
+        imageName: req.file.filename,
+        imagePath,
         status,
       });
       sendSuccess(res, 201, 'Category created successfully', category);

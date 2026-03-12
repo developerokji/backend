@@ -13,7 +13,13 @@ class SubCategoryService {
   }
 
   async createSubCategory(fields) {
-    return subCategoryModel.createSubCategory(fields);
+    return subCategoryModel.createSubCategory({
+      name:        fields.name,
+      imageName:  fields.imageName,
+      imagePath:  fields.imagePath,
+      status:      fields.status,
+      categoryId: fields.categoryId,
+    });
   }
 
   async updateSubCategory(id, fields) {
@@ -22,10 +28,10 @@ class SubCategoryService {
 
     const merged = {
       name:        fields.name        ?? existing.name,
-      image_name:  fields.imageName   ?? existing.image_name,
-      image_path:  fields.imagePath   ?? existing.image_path,
+      imageName:  fields.imageName   ?? existing.image_name,
+      imagePath:  fields.imagePath   ?? existing.image_path,
       status:      fields.status      ?? existing.status,
-      category_id: fields.categoryId  ?? existing.category_id,
+      categoryId: fields.categoryId  ?? existing.category_id,
     };
 
     await subCategoryModel.updateSubCategory(id, merged);

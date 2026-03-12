@@ -29,10 +29,10 @@ class SubCategoryController {
 
       const subCategory = await subCategoryService.createSubCategory({
         name,
-        image_name:  req.file.filename,
-        image_path:  imagePath,
+        imageName:  req.file.filename,
+        imagePath,
         status,
-        category_id: categoryId,
+        categoryId,
       });
       sendSuccess(res, 201, 'Sub-category created successfully', subCategory);
     } catch (error) { next(error); }

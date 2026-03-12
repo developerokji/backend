@@ -13,7 +13,17 @@ class BannerService {
   }
 
   async createBanner(fields) {
-    return bannerModel.createBanner(fields);
+    return bannerModel.createBanner({
+      bannerTitle:    fields.bannerTitle,
+      bannerDesc:     fields.bannerDesc,
+      bannerImg:      fields.bannerImg,
+      bannerImgPath: fields.bannerImgPath,
+      categoryId:     fields.categoryId,
+      subCategoryId: fields.subCategoryId,
+      serviceId:      fields.serviceId,
+      status:          fields.status,
+      show:            fields.show,
+    });
   }
 
   async updateBanner(id, fields) {
@@ -21,13 +31,13 @@ class BannerService {
     if (!existing) throw new ApiError(404, 'Banner not found');
 
     const merged = {
-      banner_title:    fields.bannerTitle    ?? existing.banner_title,
-      banner_desc:     fields.bannerDesc     ?? existing.banner_desc,
-      banner_img:      fields.bannerImg      ?? existing.banner_img,
-      banner_img_path: fields.bannerImgPath  ?? existing.banner_img_path,
-      category_id:     fields.categoryId     ?? existing.category_id,
-      sub_category_id: fields.subCategoryId  ?? existing.sub_category_id,
-      service_id:      fields.serviceId      ?? existing.service_id,
+      bannerTitle:    fields.bannerTitle    ?? existing.banner_title,
+      bannerDesc:     fields.bannerDesc     ?? existing.banner_desc,
+      bannerImg:      fields.bannerImg      ?? existing.banner_img,
+      bannerImgPath: fields.bannerImgPath  ?? existing.banner_img_path,
+      categoryId:     fields.categoryId     ?? existing.category_id,
+      subCategoryId: fields.subCategoryId  ?? existing.sub_category_id,
+      serviceId:      fields.serviceId      ?? existing.service_id,
       status:          fields.status         ?? existing.status,
       show:            fields.show           ?? existing.show,
     };
