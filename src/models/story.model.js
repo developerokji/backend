@@ -5,21 +5,21 @@ class StoryModel {
     // Note: limit and offset should be passed properly
     const limit = Number(take);
     const offset = Number(skip);
-    
+
     const [stories] = await db.query(
       `SELECT id, image_name, image_path, status, created_at FROM stories LIMIT ? OFFSET ?`,
-      [limit, offset]
+      [limit, offset],
     );
-    
+
     const [countResult] = await db.query(`SELECT COUNT(*) as total FROM stories`);
     const total = countResult[0].total;
 
     return { stories, total };
   }
-  async createStory(image_name, image_path, status) {
+  async createStory(imageName, imagePath, status) {
     const [result] = await db.query(
       `INSERT INTO stories (image_name, image_path, status) VALUES (?, ?, ?)`,
-      [image_name, image_path, status]
+      [imageName, imagePath, status],
     );
     return result;
   }
@@ -27,15 +27,15 @@ class StoryModel {
   async findStoryById(id) {
     const [rows] = await db.query(
       `SELECT id, image_name, image_path, status, created_at FROM stories WHERE id = ? LIMIT 1`,
-      [id]
+      [id],
     );
     return rows.length > 0 ? rows[0] : null;
   }
 
-  async updateStory(id, image_name, image_path, status) {
+  async updateStory(id, imageName, imagePath, status) {
     const [result] = await db.query(
       `UPDATE stories SET image_name = ?, image_path = ?, status = ? WHERE id = ?`,
-      [image_name, image_path, status, id]
+      [imageName, imagePath, status, id],
     );
     return result;
   }

@@ -11,6 +11,12 @@ const { requestIdMiddleware } = require('./middlewares/requestId.middleware');
 // Routes
 const userRoutes = require('./routes/user.routes');
 const storyRoutes = require('./routes/story.routes');
+const stateRoutes = require('./routes/state.routes');
+const cityRoutes = require('./routes/city.routes');
+const localityRoutes = require('./routes/locality.routes');
+const bannerRoutes = require('./routes/banner.routes');
+const categoryRoutes = require('./routes/category.routes');
+const subCategoryRoutes = require('./routes/sub-category.routes');
 
 const app = express();
 
@@ -55,6 +61,12 @@ app.get('/health', (req, res) => {
 
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/stories', storyRoutes);
+app.use('/api/v1/states',     stateRoutes);
+app.use('/api/v1/cities',     cityRoutes);
+app.use('/api/v1/localities',     localityRoutes);
+app.use('/api/v1/banners',        bannerRoutes);
+app.use('/api/v1/categories',     categoryRoutes);
+app.use('/api/v1/sub-categories', subCategoryRoutes);
 
 // 404 handler
 app.use((req, res, next) => {

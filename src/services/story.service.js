@@ -18,11 +18,11 @@ class StoryService {
     }
 
     // Use incoming value if provided, otherwise fall back to existing DB value
-    const final_image_name = imageName  ?? existing.image_name;
-    const final_image_path = image_path ?? existing.image_path;
-    const final_status     = status     ?? existing.status;
+    const finalImageName = imageName ?? existing.image_name;
+    const finalImagePath = image_path ?? existing.image_path;
+    const finalStatus = status ?? existing.status;
 
-    await storyModel.updateStory(id, final_image_name, final_image_path, final_status);
+    await storyModel.updateStory(id, finalImageName, finalImagePath, finalStatus);
 
     // Return the updated record
     return storyModel.findStoryById(id);

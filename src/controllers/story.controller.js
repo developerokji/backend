@@ -27,9 +27,9 @@ class StoryController {
       const { imageName, status } = req.body;
 
       // Delegate path resolving or uploading to the Storage Service
-      const image_path = await storageService.processUpload(req.file, 'stories');
+      const imagePath = await storageService.processUpload(req.file, 'stories');
       
-      const story = await storyService.createStory(imageName, image_path, status);
+      const story = await storyService.createStory(imageName, imagePath, status);
       sendSuccess(res, 201, 'Story created successfully', story);
     } catch (error) {
       next(error);
@@ -43,11 +43,11 @@ class StoryController {
 
       // If a new image was uploaded, get its path. Otherwise pass null so the
       // service knows to keep the existing DB path unchanged.
-      const image_path = req.file
+      const imagePath = req.file
         ? await storageService.processUpload(req.file, 'stories')
         : null;
 
-      const story = await storyService.updateStory(id, imageName, image_path, status);
+      const story = await storyService.updateStory(id, imageName, imagePath, status);
       sendSuccess(res, 200, 'Story updated successfully', story);
     } catch (error) {
       next(error);
